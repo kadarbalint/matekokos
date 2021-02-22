@@ -27,6 +27,7 @@ export default{
         this.getCollection('tasks');
     },
     methods: {
+      
     async getCollection(collectionName) {
       let snapshot = await db.collection(collectionName).get();
       let tasks = [];
