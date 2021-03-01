@@ -1,5 +1,7 @@
 <template>
-    <div class = "bg-img">
+        <div>
+        <top-header></top-header>
+         <div class = "bg-img">
         <h1><router-link to="/Main_Page">Vissza</router-link></h1>
         <h1>Task1</h1>
         <div v-for="task in tasks"  v-bind:key="task.id">
@@ -9,14 +11,17 @@
         </div>
          <button type="submit">Feladatok Kiértékelése</button>
     </div>
+        </div>
 </template>
 
 <script>
 import { db } from "../main";
 import Card from '../components/Card';
+import TopHeader from "../components/Top-Header.vue";
 
 export default{
     components: {
+      'top-header':TopHeader,
         Card
     },
     data () {
@@ -45,15 +50,16 @@ export default{
 
 <style lang = "scss" scoped>
 .bg-img{
-  background: url('hatter.jpg');
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
+background-color:whitesmoke;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;  
+padding:5%;
+border-radius:10px;
 }
 .container{
-  
+  width:500px;
   background-color:white;
-  width: auto;
   margin-left: auto;
   margin-right:auto;
 }

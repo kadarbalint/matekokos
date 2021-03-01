@@ -1,19 +1,21 @@
 <template>
   <div>
+      <top-header></top-header>
       <div class ="bg-img">
         <div class = "container">
         <span>
-           <img src="./300.png">
-        <h1><router-link to="/task1">task1</router-link></h1>
+           <img src="./200.jpg">
+        <h1><router-link to="/task1">Numerikus sorok</router-link></h1>
         </span>
         <span>
-            <img src="./300.png">
-        <h1><router-link to="/task2">Task2</router-link></h1>
+            <img src="./200.jpg">
+        <h1><router-link to="/task2">Függvények </router-link></h1>
         </span>
-        </div>
+        
         <div>
         <span><h1><router-link to="/addtask">Feladat Hozzáadása</router-link></h1></span>
         <span><h1><router-link to="/deletetask">Feladat Törlése</router-link></h1></span>
+        </div>
         </div>
       </div>
    </div>
@@ -21,9 +23,10 @@
 
 <script>
 import { db } from "../main";
+import TopHeader from "../components/Top-Header.vue";
 export default {
 name: "home",
-  components: {
+  components: { 'top-header':TopHeader
   },
   data: () => ({
     types: [],
@@ -51,13 +54,22 @@ name: "home",
 
 <style lang = "scss" scoped>
 .bg-img{
- background: rgb(63,127,251);
-background: linear-gradient(0deg, rgba(63,127,251,1) 0%, rgba(255,255,255,1) 65%);
+  
+ 
+ background-color:white;
+
 
 }
 .container {
+ 
   display: flex; /* or inline-flex */
- justify-content: space-around;
+ justify-content: space-evenly;
  flex-wrap:wrap;
+ margin-left: auto;
+  margin-right:auto;
+   border-radius:10px;
+    padding:5%;
+    background-color:whitesmoke;
+    max-width:500px;
 }
 </style>

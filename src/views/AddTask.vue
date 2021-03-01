@@ -1,9 +1,13 @@
 <template>
 <div class = "bg-img">
+              <top-header></top-header>
     <h1><router-link to="/Main_Page">Vissza</router-link></h1>
     <form @submit.prevent="pressed">
       <div class ="container">
       <h1>Feladat Feltöltése</h1>
+      <div>
+      <a v-bind:href="'https://katex.org/docs/supported.html'">Katex Segítség</a>
+      </div>      
        <div>
         <label>Kérdés:</label>
        </div>
@@ -15,6 +19,12 @@
       </div>
       <div>
         <input type="text" v-model="katex" placeholder="Latex formátumba" />
+      </div>
+       <div >
+        <label>Kép linkje:</label>
+      </div>
+      <div>
+        <input type="text" v-model="img" placeholder="Kép linkje" />
       </div>
          <div v-katex="katex"></div>
          <div>
@@ -74,12 +84,17 @@
 
 <script>
 import { db } from "../main";
+import TopHeader from "../components/Top-Header.vue";
 export default {
+  components: {
+      'top-header':TopHeader,
+  },
   data() {
     return {
        difficulty:"",
          solution:"",
            katex: "",
+           img:"",
            type:"",
       question: "",
      // image: "",
@@ -95,6 +110,7 @@ export default {
             difficulty: this.difficulty,
             solution:this.solution,
               katex: this.katex,
+              img:this.img,
           question: this.question,
           answears: this.answear,
         
@@ -115,21 +131,22 @@ export default {
 </script>
 
 
-<style>
+<style lang = "scss" scoped>
 .bg-img{
-background: rgb(63,127,251);
-background: linear-gradient(0deg, rgba(63,127,251,1) 0%, rgba(255,255,255,1) 65%);
+  background-color:white;
 }
 .container{
   
-  background-color:white;
-  width: 250;
+  background-color:whitesmoke;
   margin-left: auto;
   margin-right:auto;
+  max-width:500px;
+  padding:5%;
+  border-radius: 10px;
 }
 
 input {
-  width: 200px;
+
   padding: 30px;
   margin: 20px;
   font-size: 21px;

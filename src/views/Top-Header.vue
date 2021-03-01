@@ -1,13 +1,13 @@
 <template>
   <div class ="background">
-    <div class="logoo">
+    <span>
       <img class="logo" src ="./logo.jpg">
-    </div>
-      <div  v-if="loggedIn">Be vagy jelentkezve</div>
-      <div  v-else>Nem vagy bejelentkezve</div>
-      <div>
+    </span>
+      <span  v-if="loggedIn">Be vagy jelentkezve</span>
+      <span  v-else>Nem vagy bejelentkezve</span>
+      <span>
           <button @click="signOut">Kijelentkezés</button>
-      </div>
+      </span>
   </div>
 </template>
 <script>
@@ -53,20 +53,14 @@ if (user){
 }
 </script>
 
-
-<style lang = "scss" scoped>
-
+<style>
 .logo{
-  height:150px;
-    
-}
-.logoo{
-   margin-left: auto;
-  margin-right:auto;
+  height:50px;
 }
 .background{
- width:auto;
-
+  width:350px;
+  margin-left: auto;
+  margin-right:auto;
 }
 
 

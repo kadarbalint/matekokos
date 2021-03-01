@@ -1,5 +1,6 @@
 <template>
     <div class = "bg-img">
+         <top-header></top-header>
         <h1><router-link to="/Main_Page">Vissza</router-link></h1>
         <h1>Task1</h1>
         <div v-for="task in tasks" v-bind:key="task.id">
@@ -13,9 +14,11 @@
 <script>
 import { db } from "../main";
 import Card from '../components/Card';
+import TopHeader from "../components/Top-Header.vue";
 
 export default{
     components: {
+      'top-header':TopHeader,
         Card
     },
     data () {
@@ -51,15 +54,16 @@ export default{
 
 <style lang = "scss" scoped>
 .bg-img{
-background: rgb(255,255,255);
-background: linear-gradient(356deg, rgba(255,255,255,1) 0%, rgba(0,212,255,1) 100%);
+background-color:white;
+
 }
 .container{
   
-  background-color:white;
-  width: auto;
-  margin-left: auto;
-  margin-right:auto;
+  background-color:whitesmoke;
+ border-radius: 10px;
+max-width:500px;
+padding:5%;
+margin-left:auto;
+margin-right:auto;
 }
-
 </style>
