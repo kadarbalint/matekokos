@@ -6,6 +6,7 @@ import Main_page from '../views/Main_page.vue'
 import AddTask from '../views/AddTask.vue'
 import Task1 from '../views/Task1'
 import Task2 from '../views/Task2'
+import AddAdmin from '../views/AddAdmin'
 import DeleteTask from '../views/DeleteTask'
 import { firebase } from '@firebase/app'
 import '@firebase/auth'
@@ -51,6 +52,13 @@ const routes = [
     path: '/deletetask',
     name: "deletetask",
     component: DeleteTask,
+    meta: {requiresAuth: true}
+
+  },
+  {
+    path: '/addadmin',
+    name: "addadmin",
+    component: AddAdmin,
     meta: {requiresAuth: true}
 
   },

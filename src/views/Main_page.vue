@@ -3,18 +3,19 @@
       <top-header></top-header>
       <div class ="bg-img">
         <div class = "container">
-        <span>
-           <img src="./200.jpg">
-        <h1><router-link to="/task1">Numerikus sorok</router-link></h1>
-        </span>
-        <span>
-            <img src="./200.jpg">
-        <h1><router-link to="/task2">Függvények </router-link></h1>
-        </span>
-        
+        <div class="wrapper">
+           <img class ="img" src="./sorozat.png">
+        <h1><router-link to="/task1">Sorozatok</router-link></h1>
+        </div>
+        <div class="wrapper">
+            <img class="img" src="./fuggveny.png">
+        <h1><router-link to="/task2">Függvények</router-link></h1>
+        </div>  
         <div>
-        <span><h1><router-link to="/addtask">Feladat Hozzáadása</router-link></h1></span>
+        
+        <span><h1><router-link to="/addtask" v-if="isAdmin()" >Feladat Hozzáadása</router-link></h1></span>
         <span><h1><router-link to="/deletetask">Feladat Törlése</router-link></h1></span>
+         <span><h1><router-link to="/addadmin">Adminisztrátor felvétele</router-link></h1></span>
         </div>
         </div>
       </div>
@@ -24,6 +25,7 @@
 <script>
 import { db } from "../main";
 import TopHeader from "../components/Top-Header.vue";
+import firebase from "firebase";
 export default {
 name: "home",
   components: { 'top-header':TopHeader
@@ -46,6 +48,16 @@ name: "home",
       });
       this.types = types;
     },
+     async isAdmin() {
+      let snapshot = await db.collection("users").get();
+      let currentUser = firebase.auth().currentUser;
+      snapshot.forEach(users => {
+        if (users.email === currentUser.Identifier) {
+         return 1;
+        }
+        else return 0;
+      });
+    }
    
   }
 };
@@ -53,6 +65,15 @@ name: "home",
 </script>
 
 <style lang = "scss" scoped>
+.wrapper{
+   background-color:white;
+    border-radius:10px;
+    padding:5%;
+
+}
+.img{
+  max-width:200px;
+}
 .bg-img{
   
  
@@ -63,7 +84,7 @@ name: "home",
 .container {
  
   display: flex; /* or inline-flex */
- justify-content: space-evenly;
+ justify-content: space-around;
  flex-wrap:wrap;
  margin-left: auto;
   margin-right:auto;

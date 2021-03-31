@@ -53,7 +53,7 @@ export default {
 
 <style lang = "scss" scoped>
 .logo{
-  height:150px;
+max-width:500px;
   margin-top:5%;
 }
 
@@ -61,7 +61,6 @@ export default {
   background-color:white;
 }
 .container{
-  
   background-color:whitesmoke;
   max-width:500px;
   border-radius:10px;

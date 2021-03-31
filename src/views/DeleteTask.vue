@@ -42,7 +42,7 @@ export default{
     deleteTask(id){
     db.collection("tasks").doc(id).delete().then(() => {
     console.log("Document successfully deleted!");
-    this.$router.go()
+        this.getCollection('tasks');
 }).catch((error) => {
     console.error("Error removing document: ", error);
 });

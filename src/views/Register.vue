@@ -1,8 +1,8 @@
 <template>
-      <div class ="bg-img">
-     <div class="flex">
+      <div class ="flexbox">
+    
        <div class="logo">
-      <img src ="../assets/logo.jpg">
+       <img class="logo" src ="../assets/logo.jpg">
     </div>
       <div class="container">
       <form @submit.prevent ="pressed">
@@ -12,10 +12,10 @@
           <div class ="password">
               <input type ="password" v-model="password" placeholder="Jelszó">
           </div>
-           <div v-if="error" class="error">{{error.message}}</div>
           <button type="submit"> Regisztrálj</button>
       </form>
-      </div>
+       <div class ="error" v-if ="error"> {{error.message}}</div>
+<span>Már regisztráltál? <router-link to="/" >Bejelentkezés</router-link></span>
       </div>
       </div>
 </template>
@@ -51,25 +51,15 @@ export default{
 </script>
 
 <style lang = "scss" scoped>
-.bg-img{
-    background-color:white;
-    
-}
-.flex{
- display: inline-flex; /* or inline-flex */
- justify-content:center;
- flex-wrap:wrap;
-}
 .logo{
-  height:150px;
-  margin-top:10%;
+width:500px;
+  margin-top:5%;
 }
-.error {
-  color: red;
-  font-size: 18px;
+
+.bg-img{
+  background-color:white;
 }
 .container{
-  
   background-color:whitesmoke;
   max-width:500px;
   border-radius:10px;
@@ -77,6 +67,23 @@ export default{
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 
+}
+.flexbox {
+  max-width:1000px;
+  padding:10%;
+  border-radius:10px;
+   flex-direction: row;
+  display:flex; 
+ justify-content:center;
+ flex-wrap:wrap;
+ margin-left:auto;
+ margin-right:auto;
+ 
+}
+
+.error {
+  color: red;
+  font-size: 18px;
 }
 input {
   width: 300px;

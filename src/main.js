@@ -7,6 +7,8 @@ import firebase from "firebase/app";
 import '@firebase/firestore';
 import VueKatex from 'vue-katex';
 import 'katex/dist/katex.min.css';
+import "firebase/analytics";
+
 
 Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
@@ -23,13 +25,16 @@ Vue.use(VueKatex, {
     projectId: "matekokos-f3cfd",
     storageBucket: "matekokos-f3cfd.appspot.com",
     messagingSenderId: "551631473487",
-    appId: "1:551631473487:web:e09e72458de8968d33d33a"
+    appId: "1:551631473487:web:e09e72458de8968d33d33a",
+    measurementId: "G-7S4B54BMX1"
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-
+  firebase.analytics();
+  
+// alias
+Vue.prototype.$analytics = firebase.analytics();
   export const db = firebase.firestore();
-
 
     let app;
     

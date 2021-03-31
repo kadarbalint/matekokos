@@ -20,20 +20,21 @@
       <div>
         <input type="text" v-model="katex" placeholder="Latex formátumba" />
       </div>
+      <div v-katex="katex"></div>
        <div >
         <label>Kép linkje:</label>
       </div>
       <div>
         <input type="text" v-model="img" placeholder="Kép linkje" />
       </div>
-         <div v-katex="katex"></div>
+         
          <div>
           <label>Feladat típusa:</label>
          </div>
          <div>
       <select v-model="type">
-        <option>task1</option>
-        <option>task2</option>
+        <option>Sorozatok</option>
+        <option>Függvények</option>
       </select>
       </div>
   
@@ -59,10 +60,10 @@
         </div>
       <label>Helyes Válasz:</label>
       <select v-model="solution">
-        <option>A</option>
-        <option>B</option>
-        <option>C</option>
-        <option>D</option>
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
       </select>
       <div>
              <br />
@@ -119,7 +120,7 @@ export default {
         })
         .then(ref => {
           this.status = ref.id;
-           this.$router.go()
+       this.$router.replace({name:"Main_page"})
         })
         .catch(/*err*/ () => {});
       setTimeout(() => {
