@@ -24,7 +24,7 @@
 <script>
 import { db } from "../main";
 import TopHeader from "../components/Top-Header.vue";
-//import firebase from "firebase";
+import firebase from "firebase";
 export default {
 name: "home",
   components: { 'top-header':TopHeader
@@ -35,27 +35,21 @@ name: "home",
      admins:[]
   }),
   mounted() {
-    this.getAdmins();
-    this.getCollection('admins');
+    this.isAdmin();
 
   },
   methods: {
-      async getAdmins() {
-      this.admins.forEach(admin=>{
-        console.log(admin.email)
-      })
-    },
-     async getCollection(collectionName) {
-      let snapshot = await db.collection(collectionName).get();
-      let admins = [];
+       async isAdmin() {
+      let snapshot = await db.collection("admins").get();
+      let currentUser = firebase.auth().currentUser;
       snapshot.forEach(admin => {
-        let appData = admin.data();
-        appData.id = admin.id;
-        admins.push(appData);
+        if (admin.email === currentUser.Identifier) {
+          this.show = true;
+        }
       });
-      this.admins = admins;
+    }
   }
-  }
+  
 };
 
 </script>
