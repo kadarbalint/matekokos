@@ -57,7 +57,7 @@ if (user){
 <style lang = "scss" scoped>
 
 .logo{
-  height:150px;
+  max-height:150px;
     
 }
 .logoo{
@@ -68,6 +68,10 @@ if (user){
  width:auto;
 
 }
-
+@media screen and (max-width:600px){
+    .logo{
+        max-width:320px;
+    }
+}
 
 </style>

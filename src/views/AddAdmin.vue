@@ -1,25 +1,23 @@
 <template>
 <div class = "bg-img">
               <top-header></top-header>
-    <h1><router-link to="/Main_Page">Vissza</router-link></h1>
-    <form @submit.prevent="pressed">
-      <div class ="container">
+        <h1><router-link to="/Main_Page">Vissza</router-link></h1>
+    <div class ="container">
+       <form @submit.prevent="pressed">
       <h1>Adminisztrátor felvétele</h1>
       <div>
-       <div>
-        <label>Admin email cím</label>
-       </div>
+       
        <div>
        <input type="text" v-model="email" placeholder="Admin e-mail cím" />
       </div>
       <br />
       <button type="submit">Adminisztrátor hozzáadása</button>
       </div>
-      </div>
     </form>
     <h2 v-if="status">Admin hozzáadva
     </h2>
-</div>
+    </div>
+    </div>
 </template>
 
 <script>
@@ -32,12 +30,15 @@ export default {
   data() {
     return {
            type:"",
-      status: ""
+      status: "",
+      admins:[],
     };
   },
+  mounted(){
+    },
   methods: {
     pressed() {
-      db.collection("users")
+      db.collection("admins")
         .add({
            email:this.email,
         })
@@ -50,8 +51,8 @@ export default {
         this.status = "";
       }, 5000);
     }
-  }
-};
+  },
+}
 </script>
 
 
@@ -67,6 +68,8 @@ export default {
   max-width:500px;
   padding:5%;
   border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 input {

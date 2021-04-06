@@ -52,7 +52,7 @@ export default{
 
 <style lang = "scss" scoped>
 .logo{
-width:500px;
+ max-width:500px;
   margin-top:5%;
 }
 
@@ -99,5 +99,10 @@ button {
   height: 75px;
   font-size: 100%;
   border-radius:5px;
+}
+@media screen and (max-width:600px){
+    .logo{
+        max-width:320px;
+    }
 }
 </style>

@@ -65,15 +65,6 @@
         <option>2</option>
         <option>3</option>
       </select>
-      <div>
-             <br />
-       <label>Nehézség:</label>
-      <select v-model="difficulty">
-        <option>Könnyű</option>
-        <option>Közepes</option>
-        <option>Nehéz</option>
-      </select>
-      </div>
       <br />
       <button type="submit">Feladat Feltöltése</button>
       </div>
@@ -92,7 +83,6 @@ export default {
   },
   data() {
     return {
-       difficulty:"",
          solution:"",
            katex: "",
            img:"",
@@ -108,7 +98,6 @@ export default {
       db.collection("tasks")
         .add({
            type:this.type,
-            difficulty: this.difficulty,
             solution:this.solution,
               katex: this.katex,
               img:this.img,
@@ -144,6 +133,8 @@ export default {
   max-width:500px;
   padding:5%;
   border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 input {

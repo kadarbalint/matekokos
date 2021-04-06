@@ -101,4 +101,9 @@ button {
   font-size: 100%;
   border-radius:5px;
 }
+@media screen and (max-width:600px){
+    .logo{
+        max-width:320px;
+    }
+}
 </style>

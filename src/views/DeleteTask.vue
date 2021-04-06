@@ -2,7 +2,7 @@
     <div class = "bg-img">
          <top-header></top-header>
         <h1><router-link to="/Main_Page">Vissza</router-link></h1>
-        <h1>Task1</h1>
+        <h1>Feladatok törlése</h1>
         <div v-for="task in tasks" v-bind:key="task.id">
             <Card v-bind:task="task"></Card>
               <button v-on:click= "deleteTask(task.id)" >Feladat törlése</button>
@@ -60,6 +60,8 @@ background-color:white;
 .container{
   
   background-color:whitesmoke;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
  border-radius: 10px;
 max-width:500px;
 padding:5%;

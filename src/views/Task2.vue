@@ -92,12 +92,16 @@ margin-left:auto;
 margin-right:auto;  
 padding:5%;
 border-radius:10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 .container{
   max-width:500px;
   background-color:white;
   margin-left: auto;
   margin-right:auto;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 .wrongAnswer{
   background-color: red;

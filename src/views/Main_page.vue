@@ -11,11 +11,10 @@
             <img class="img" src="./fuggveny.png">
         <h1><router-link to="/task2">Függvények</router-link></h1>
         </div>  
-        <div>
-        
-        <span><h1><router-link to="/addtask" v-if="isAdmin()" >Feladat Hozzáadása</router-link></h1></span>
+        <div class="wrapper" v-if=show>
+        <span><h1><router-link to="/addtask">Feladat Hozzáadása</router-link></h1></span>
         <span><h1><router-link to="/deletetask">Feladat Törlése</router-link></h1></span>
-         <span><h1><router-link to="/addadmin">Adminisztrátor felvétele</router-link></h1></span>
+         <span><h1><router-link to="/addadmin">Admin</router-link></h1></span>
         </div>
         </div>
       </div>
@@ -25,40 +24,37 @@
 <script>
 import { db } from "../main";
 import TopHeader from "../components/Top-Header.vue";
-import firebase from "firebase";
+//import firebase from "firebase";
 export default {
 name: "home",
   components: { 'top-header':TopHeader
   },
   data: () => ({
-    types: [],
     page: "main",
+     show: false,
+     admins:[]
   }),
   mounted() {
-    this.getCollection("types");
+    this.getAdmins();
+    this.getCollection('admins');
+
   },
   methods: {
-    async getCollection(collectionName) {
-      let snapshot = await db.collection(collectionName).get();
-      let types = [];
-      snapshot.forEach(type => {
-        let appData = type.data();
-        appData.id = type.id;
-        types.push(appData);
-      });
-      this.types = types;
+      async getAdmins() {
+      this.admins.forEach(admin=>{
+        console.log(admin.email)
+      })
     },
-     async isAdmin() {
-      let snapshot = await db.collection("users").get();
-      let currentUser = firebase.auth().currentUser;
-      snapshot.forEach(users => {
-        if (users.email === currentUser.Identifier) {
-         return 1;
-        }
-        else return 0;
+     async getCollection(collectionName) {
+      let snapshot = await db.collection(collectionName).get();
+      let admins = [];
+      snapshot.forEach(admin => {
+        let appData = admin.data();
+        appData.id = admin.id;
+        admins.push(appData);
       });
-    }
-   
+      this.admins = admins;
+  }
   }
 };
 
@@ -66,9 +62,13 @@ name: "home",
 
 <style lang = "scss" scoped>
 .wrapper{
+  margin-top:5%;
+  max-width:210px;
    background-color:white;
     border-radius:10px;
-    padding:5%;
+    padding:3%;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 
 }
 .img{
@@ -92,5 +92,12 @@ name: "home",
     padding:5%;
     background-color:whitesmoke;
     max-width:500px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+@media screen and (max-width:600px){
+    .logo{
+        max-width:350px;
+    }
 }
 </style>
