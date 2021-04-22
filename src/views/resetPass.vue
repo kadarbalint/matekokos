@@ -4,53 +4,41 @@
       <img class="logo" src ="../assets/logo.jpg">
     </div>
     <div class = "container">
-      <form @submit.prevent="pressed">
+        <form @submit.prevent="pressed">
           <div class ="login">
-          <input type = "email" placeholder="Email cím" v-model="email">
+          <input type = "email" v-model="email" placeholder="Email cím" >
           </div>
-          <div class ="password">
-          <input type = "password" placeholder="Jelszó" v-model = "password">
-          </div>
-          <button type ="submit">Bejelentkezés</button>
-      </form>
-     
-    
+          <button type ="submit">Jelszó visszaállítása</button>     
+        </form>
+<div>Ide kattintva tudsz <router-link to="/" >Bejelentkezni</router-link></div>
 <div>Ide kattintva tudsz <router-link to="/Register" >Regisztrálni</router-link></div>
-<div> <router-link to="/resetPass" >Elfelejtett jelszó</router-link></div>
  </div>
- <div v-if = "error">Megjelent</div>
- <p></p>
+ <div v-if="message">{{message}}</div>
 </div>
 </template>
 
 <script>
-import { firebase } from '@firebase/app'
-import '@firebase/auth'
-
-export default {
-   data(){
-    return{
-    email:'',
-    password:'',
-    error:""
-    }
-  },
-  methods:{
-  async pressed(){
-    
-    try{
-     const val = await firebase.auth().signInWithEmailAndPassword(this.email,this.password)  
-    console.log(val)
-    this.$router.replace({name:"Main_page"})
-    }
-    catch(error){
-      console.log(error.message)
-    }
+import * as firebase from "firebase/app";
+import "firebase/auth";
+  export default {
+      data() {
+          return{
+              email: "",
+              message: ""
+          }
+      },
+      methods: {
+          pressed(){
+              firebase.auth().sendPasswordResetEmail(this.email)
+              .then(()=>{
+                this.message="A jelszó visszaállító linket kiküldtük a következő címre: "+this.email;
+              })
+              .catch((err)=>{
+                  this.message=err.message;
+              })
+          }
+      }
   }
-  }
- 
-}
-
 
 </script>
 

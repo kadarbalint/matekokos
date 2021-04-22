@@ -73,5 +73,18 @@ if (user){
         max-width:320px;
     }
 }
+@media screen and (max-width:321px){
+  .kep{
+  max-width:300px;
+}
+
+}
+button {
+  max-width: 300px;
+  height: 30px;
+  font-size: 100%;
+  border-radius:5px;
+  
+}
 
 </style>

@@ -68,4 +68,12 @@ padding:5%;
 margin-left:auto;
 margin-right:auto;
 }
+button {
+  max-width: 300px;
+  height: 30px;
+  font-size: 100%;
+  border-radius:5px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
 </style>

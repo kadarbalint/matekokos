@@ -105,4 +105,9 @@ button {
         max-width:320px;
     }
 }
+@media screen and (max-width:321px){
+  .kep{
+  max-width:300px;
+}
+}
 </style>

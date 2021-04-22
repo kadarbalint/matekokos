@@ -43,7 +43,8 @@ name: "home",
       let snapshot = await db.collection("admins").get();
       let currentUser = firebase.auth().currentUser;
       snapshot.forEach(admin => {
-        if (admin.email === currentUser.Identifier) {
+        let data=admin.data();
+        if (data.email === currentUser.email) {
           this.show = true;
         }
       });

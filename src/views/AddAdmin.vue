@@ -73,9 +73,15 @@ export default {
 }
 
 input {
-
+  
   padding: 30px;
   margin: 20px;
   font-size: 21px;
+}
+button {
+  max-width: 300px;
+  height: 30px;
+  font-size: 100%;
+  border-radius:5px;
 }
 </style>

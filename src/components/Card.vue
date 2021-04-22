@@ -3,7 +3,7 @@
     <p>{{task.question}}</p>
     <div v-katex="task.katex"></div>
     <div class ="container.kep" v-if="task.img">
-     <img v-bind:src="task.img"> 
+     <img class="kep" v-bind:src="task.img"> 
     </div>
     <form class="select">
     <input type="radio" id=task.answears[0] value="0" v-model="picked" v-on:input="pick">
@@ -20,6 +20,7 @@
 <br>
 </form>
   </div>
+  
 </template>
 
 <script>
@@ -40,8 +41,9 @@ export default{
 
 <style scoped>
 
-.container.kep{
-  width:300px;
+
+.kep{
+  max-width:400px;
 }
 .select{
   text-align:left;
@@ -51,5 +53,16 @@ export default{
   background-color:whitesmoke;
   border-radius:10px;
 
+}
+
+@media screen and (max-width:600px){
+  .kep{
+  max-width:300px;
+}
+}
+@media screen and (max-width:321px){
+  .kep{
+  max-width:250px;
+}
 }
 </style>

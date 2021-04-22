@@ -7,24 +7,23 @@
        
          <div>
       </div>
-      <div v-if="redOrGreen.length == 0">
-          <div v-for="task in tasks"  v-bind:key="task.id">
-            <div v-if="task.type == 'Sorozatok'">
-              <Card @chose="answer" v-bind:task="task"></Card>
+            <div>
+          <h2>Nehézség:</h2>
+         </div>
+         <div>
+      <select @change ="onChange()" v-model="hardness" >
+        <option>Könnyű</option>
+        <option>Nehéz</option>
+      </select>
+      </div>
+          <div v-for="task in tasks" v-bind:key="task.id">
+            <div v-if="task.type == 'Sorozatok' && task.hardness == hardness">
+              <Card @chose="answer" v-bind:task="task" v-if="typeof redOrGreen[task.id] == 'undefined'"></Card>
+              <Card style="background-color: green" @chose="answer" v-bind:task="task" v-if="redOrGreen[task.id] === true"></Card>
+              <Card style="background-color: red" @chose="answer" v-bind:task="task" v-if="redOrGreen[task.id] === false"></Card>
               <br>
             </div>
           </div>
-      </div>
-      <div v-if="redOrGreen.length != 0">
-          <div v-for="(task, index) in tasks"  v-bind:key="task.id">
-            <div v-if="task.type == 'Sorozatok' && redOrGreen[index]==0">
-              <Card style="background-color: green" @chose="answer" v-bind:task="task"></Card>
-            </div>
-            <div v-if="task.type == 'Sorozatok' && redOrGreen[index]==1">
-              <Card style="background-color: red" @chose="answer" v-bind:task="task"></Card>
-            </div>
-          </div>
-      </div>
          <button type="submit" v-on:click="evaluate">Feladatok Kiértékelése</button>
     </div>
         </div>
@@ -45,14 +44,18 @@ export default{
     return {
       tasks: [],
       userAnswers: [],
-      redOrGreen: [],
-      hardness: ""
+      redOrGreen: {},
+      hardness: "",
+     // reset:false
     }},
     mounted(){
-        this.getCollection('tasks');
+        
     },
     methods: {
-      
+       onChange(){
+      this.getCollection('tasks');
+     // this.reset=true;
+      },
     async getCollection(collectionName) {
       let snapshot = await db.collection(collectionName).get();
       let tasks = [];
@@ -64,21 +67,19 @@ export default{
       this.tasks = tasks;
     },
     evaluate(){
-      for(let i = 0; i < this.tasks.length; i++){
-        for(let [key, value] of Object.entries(this.userAnswers)){
-          if(key==this.tasks[i].id){
-            if(value==this.tasks[i].solution)
-            {
-              this.points +=1;
-              this.redOrGreen.push(0);
-              console.log(this.redOrGreen);
-            } else {
-              this.redOrGreen.push(1);
-              console.log(this.redOrGreen);
-            }
-          }
+      this.points = 0;
+      this.tasks.forEach((task) => {
+        const answer = this.userAnswers[task.id];
+		if(answer==task.solution)
+		{
+          this.points +=1;
+          this.redOrGreen[task.id] = true;
+        } else {
+          this.redOrGreen[task.id] = false;
         }
-      }
+      });
+      console.log(this.redOrGreen);
+      this.$forceUpdate();
     },
     answer(value, id){
       console.log(value, id);
@@ -111,6 +112,20 @@ border-radius:10px;
 }
 .wrongAnswer{
   background-color: red;
+}
+button {
+  max-width: 300px;
+  height: 30px;
+  font-size: 100%;
+  border-radius:5px;
+}
+select {
+  max-width: 300px;
+  height: 30px;
+  font-size: 100%;
+  border-radius:5px;
+  margin-bottom:10px;
+
 }
 
 </style>

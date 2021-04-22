@@ -37,6 +37,15 @@
         <option>Függvények</option>
       </select>
       </div>
+      <div>
+          <label>Nehézség:</label>
+         </div>
+         <div>
+      <select v-model="hardness">
+        <option>Könnyű</option>
+        <option>Nehéz</option>
+      </select>
+      </div>
   
  
           <p>Válaszlehetőségek:</p>
@@ -88,7 +97,7 @@ export default {
            img:"",
            type:"",
       question: "",
-     // image: "",
+      hardness: "",
       answear:[],
       status: ""
     };
@@ -103,6 +112,7 @@ export default {
               img:this.img,
           question: this.question,
           answears: this.answear,
+          hardness: this.hardness,
         
           
 
@@ -142,5 +152,19 @@ input {
   padding: 30px;
   margin: 20px;
   font-size: 21px;
+}
+button {
+  max-width: 300px;
+  height: 75px;
+  font-size: 100%;
+  border-radius:5px;
+}
+select {
+  max-width: 300px;
+  height: 50px;
+  font-size: 100%;
+  border-radius:5px;
+    margin-bottom:10px;
+
 }
 </style>

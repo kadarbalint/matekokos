@@ -9,6 +9,7 @@ import Task2 from '../views/Task2'
 import AddAdmin from '../views/AddAdmin'
 import DeleteTask from '../views/DeleteTask'
 import { firebase } from '@firebase/app'
+import resetPass from '../views/resetPass'
 import '@firebase/auth'
 
 Vue.use(VueRouter)
@@ -23,6 +24,11 @@ const routes = [
     path: '/Register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/resetPass',
+    name: 'resetPass',
+    component: resetPass
   },
   {
     path: '/Main_page',
@@ -74,7 +80,7 @@ router.beforeEach((to, from, next)=> {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const isAuthenticated = firebase.auth().currentUser;
   if(requiresAuth && !isAuthenticated){
-  next("/Login");
+  next("/");
   } else{
     next();
   }
