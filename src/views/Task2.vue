@@ -52,7 +52,9 @@ export default{
     },
     methods: {
         onChange(){
-      this.getCollection('tasks');
+     this.getCollection('tasks');
+      this.userAnswers = [];
+      this.redOrGreen = {};
       },
     async getCollection(collectionName) {
       let snapshot = await db.collection(collectionName).get();
