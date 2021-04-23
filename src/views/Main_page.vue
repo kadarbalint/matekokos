@@ -4,11 +4,11 @@
       <div class ="bg-img">
         <div class = "container">
         <div class="wrapper">
-           <img class ="img" src="./sorozat.png">
+           <img class ="img" src="../assets/sorozat.png">
         <h1><router-link to="/task1">Sorozatok</router-link></h1>
         </div>
         <div class="wrapper">
-            <img class="img" src="./fuggveny.png">
+            <img class="img" src="../assets/fuggveny.png">
         <h1><router-link to="/task2">Függvények</router-link></h1>
         </div>  
         <div class="wrapper" v-if=show>

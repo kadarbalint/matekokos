@@ -1,7 +1,7 @@
 <template>
   <div class ="background">
     <div class="logoo">
-      <img class="logo" src ="./logo.jpg">
+      <img class="logo" src ="../assets/logo.jpg">
     </div>
       <div  v-if="loggedIn">Be vagy jelentkezve</div>
       <div  v-else>Nem vagy bejelentkezve</div>
