@@ -18,7 +18,7 @@
         <label>Feladat Szövege:</label>
       </div>
       <div>
-        <input type="text" v-model="katex" placeholder="Latex formátumba" />
+        <textarea rows="6" type="text" v-model="katex" placeholder="Latex formátumba" />
       </div>
       <div v-katex="katex"></div>
        <div >
@@ -148,6 +148,12 @@ export default {
 }
 
 input {
+
+  padding: 30px;
+  margin: 20px;
+  font-size: 21px;
+}
+textarea {
 
   padding: 30px;
   margin: 20px;
