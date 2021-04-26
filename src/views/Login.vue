@@ -14,12 +14,10 @@
           <button type ="submit">Bejelentkezés</button>
       </form>
      
-    
+    <div class ="error" v-if ="error"> {{error.message}}</div>
 <div>Ide kattintva tudsz <router-link to="/Register" >Regisztrálni</router-link></div>
 <div> <router-link to="/resetPass" >Elfelejtett jelszó</router-link></div>
  </div>
- <div v-if = "error">Megjelent</div>
- <p></p>
 </div>
 </template>
 
@@ -32,7 +30,7 @@ export default {
     return{
     email:'',
     password:'',
-    error:""
+    error:''
     }
   },
   methods:{
@@ -44,7 +42,7 @@ export default {
     this.$router.replace({name:"Main_page"})
     }
     catch(error){
-      console.log(error.message)
+     this.error=error;
     }
   }
   }

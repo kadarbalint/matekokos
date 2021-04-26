@@ -16,6 +16,8 @@
       </form>
        <div class ="error" v-if ="error"> {{error.message}}</div>
 <span>Már regisztráltál? <router-link to="/" >Bejelentkezés</router-link></span>
+<div> <router-link to="/resetPass" >Elfelejtett jelszó</router-link></div>
+
       </div>
       </div>
 </template>

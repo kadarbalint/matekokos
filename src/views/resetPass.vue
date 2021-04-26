@@ -13,12 +13,13 @@
 <div>Ide kattintva tudsz <router-link to="/" >Bejelentkezni</router-link></div>
 <div>Ide kattintva tudsz <router-link to="/Register" >Regisztrálni</router-link></div>
  </div>
+ <p></p>
  <div v-if="message">{{message}}</div>
 </div>
 </template>
 
 <script>
-import * as firebase from "firebase/app";
+import firebase from 'firebase/app'
 import "firebase/auth";
   export default {
       data() {
