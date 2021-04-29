@@ -15,6 +15,8 @@
 import { db } from "../main";
 import Card from '../components/Card';
 import TopHeader from "../components/Top-Header.vue";
+import firebase from "firebase";
+
 
 export default{
     components: {
@@ -23,11 +25,15 @@ export default{
     },
     data () {
     return {
-      tasks: []
+      tasks: [],
+        admins:[],
+        show:"",
     }},
     mounted(){
         this.getCollection('tasks');
+         this.isAdmin();
     },
+   
     methods: {
     async getCollection(collectionName) {
       let snapshot = await db.collection(collectionName).get();
@@ -47,8 +53,26 @@ export default{
     console.error("Error removing document: ", error);
 });
     },
+        
+     async isAdmin() {
+     this.show = false;
+      let snapshot = await db.collection("admins").get();
+      let currentUser = firebase.auth().currentUser;
+      snapshot.forEach(admin => {
+        let data=admin.data();
+       
+        if (data.email === currentUser.email) {
+         this.show = true;
+        }
+      }) ;
+      if (!this.show){
+                 console.log(this.show);
+        this.$router.replace({name:"Main_page"}) 
+                    }
     }
+  }
 }
+
 
 </script>
 

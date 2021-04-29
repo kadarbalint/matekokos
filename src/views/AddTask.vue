@@ -86,6 +86,7 @@
 <script>
 import { db } from "../main";
 import TopHeader from "../components/Top-Header.vue";
+import firebase from "firebase";
 export default {
   components: {
       'top-header':TopHeader,
@@ -99,8 +100,14 @@ export default {
       question: "",
       hardness: "",
       answear:[],
-      status: ""
+      status: "",
+     admins:[],
+     show:"",
     };
+  },
+   mounted() {
+    this.isAdmin();
+
   },
   methods: {
     pressed() {
@@ -125,6 +132,23 @@ export default {
       setTimeout(() => {
         this.status = "";
       }, 5000);
+    },
+    
+    async isAdmin() {
+     this.show = false;
+      let snapshot = await db.collection("admins").get();
+      let currentUser = firebase.auth().currentUser;
+      snapshot.forEach(admin => {
+        let data=admin.data();
+       
+        if (data.email === currentUser.email) {
+         this.show = true;
+        }
+      }) ;
+      if (!this.show){
+                 console.log(this.show);
+        this.$router.replace({name:"Main_page"}) 
+                    }
     }
   }
 };
